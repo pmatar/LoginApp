@@ -50,24 +50,20 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func remindPassword() {
-        showAlert(title: "Oops!", message: "Your name is \(password) 😉")
+        showAlert(title: "Oops!", message: "Your password is \(password) 😉")
     }
-}
-
-extension LoginViewController {
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
-        
         alert.addAction(action)
+        
         present(alert, animated: true) {
             self.passwordTF.text = ""
         }
     }
-    
 }
 
 extension LoginViewController: UITextFieldDelegate {
