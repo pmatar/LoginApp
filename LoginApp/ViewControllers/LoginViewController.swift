@@ -12,8 +12,8 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    private let username = "Paul"
-    private let password = "Matar"
+    private let username = "User"
+    private let password = "Password"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +22,29 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.userName = usernameTF.text
+        
+        if let tabBarController = segue.destination as? UITabBarController {
+            
+            guard let viewControllers = tabBarController.viewControllers else { return }
+            
+            for viewController in viewControllers {
+                
+                if let welcomeVC = viewController as? WelcomeViewController {
+                    welcomeVC.userName = "Paul"
+                } else if let navigationVC = viewController as? UINavigationController {
+                    guard let bioVC = navigationVC.topViewController as? BioViewController else { return }
+                    bioVC.title = "Paul Matar"
+                }
+            }
+        }
     }
-    
+        
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         usernameTF.text = ""
         passwordTF.text = ""
     }
     
-    @IBAction func login() {
+    @IBAction func loginButtonPressed() {
         if usernameTF.text == username && passwordTF.text == password {
             performSegue(withIdentifier: "loginSegue", sender: nil)
         } else {
@@ -72,7 +85,7 @@ extension LoginViewController: UITextFieldDelegate {
         case usernameTF:
             passwordTF.becomeFirstResponder()
         default:
-            login()
+            loginButtonPressed()
         }
         return true
     }
