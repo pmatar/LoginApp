@@ -10,11 +10,12 @@ import UIKit
 class BioViewController: UIViewController {
 
     @IBOutlet var bioTextView: UITextView!
-    
-    var bio = ""
+
+    var user: Person?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bioTextView.text = bio
+        bioTextView.text = user?.desciption ?? ""
+//        self.title = user?.fullName ?? ""
     }
 }

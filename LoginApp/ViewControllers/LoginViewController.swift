@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    private let user = User.setUser()
+    let user = User.setUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,11 @@ class LoginViewController: UIViewController {
             for viewController in viewControllers {
                 
                 if let welcomeVC = viewController as? WelcomeViewController {
-                    welcomeVC.userName = user.person.name
+                    welcomeVC.user = user.person
                 } else if let navigationVC = viewController as? UINavigationController {
                     guard let bioVC = navigationVC.topViewController as? BioViewController else { return }
+                    bioVC.user = user.person
                     bioVC.title = user.person.fullName
-                    bioVC.bio = user.person.desciption
                 }
             }
         }
