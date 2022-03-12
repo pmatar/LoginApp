@@ -12,8 +12,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    private let username = "User"
-    private let password = "Password"
+    private let user = User.setUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,22 +29,23 @@ class LoginViewController: UIViewController {
             for viewController in viewControllers {
                 
                 if let welcomeVC = viewController as? WelcomeViewController {
-                    welcomeVC.userName = "Paul"
+                    welcomeVC.userName = user.person.name
                 } else if let navigationVC = viewController as? UINavigationController {
                     guard let bioVC = navigationVC.topViewController as? BioViewController else { return }
-                    bioVC.title = "Paul Matar"
+                    bioVC.title = user.person.fullName
+                    bioVC.bio = user.person.desciption
                 }
             }
         }
     }
-        
+    
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         usernameTF.text = ""
         passwordTF.text = ""
     }
     
     @IBAction func loginButtonPressed() {
-        if usernameTF.text == username && passwordTF.text == password {
+        if usernameTF.text == user.username && passwordTF.text == user.password {
             performSegue(withIdentifier: "loginSegue", sender: nil)
         } else {
             showAlert(title: "Invalid login or password",
@@ -56,8 +56,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func remindHints(_ sender: UIButton) {
         sender.tag == 0
-        ? showAlert(title: "Oops!", message: "Your name is \(username) 😉")
-        : showAlert(title: "Oops!", message: "Your password is \(password) 😉")
+        ? showAlert(title: "Oops!", message: "Your name is \(user.username) 😉")
+        : showAlert(title: "Oops!", message: "Your password is \(user.password) 😉")
     }
     
     

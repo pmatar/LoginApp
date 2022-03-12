@@ -11,8 +11,10 @@ class BioViewController: UIViewController {
 
     @IBOutlet var bioTextView: UITextView!
     
+    var bio = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bioTextView.text = bio
     }
 }
