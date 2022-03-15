@@ -182,27 +182,31 @@
             </objects>
             <point key="canvasLocation" x="2917.5" y="880.9859154929577"/>
         </scene>
-        <!--View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="hqL-g5-ZCd">
             <objects>
-                <viewController id="rPP-tC-gzb" sceneMemberID="viewController">
+                <viewController id="rPP-tC-gzb" userLabel="Image View Controller" customClass="ImageViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VB0-1I-pDI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" translatesAutoresizingMaskIntoConstraints="NO" id="9fd-km-LVL">
-                                <rect key="frame" x="0.0" y="-36" width="320" height="640"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9fd-km-LVL">
+                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dJv-uG-LWU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9fd-km-LVL" firstAttribute="top" secondItem="dJv-uG-LWU" secondAttribute="top" id="JkW-2P-4eB"/>
                             <constraint firstItem="9fd-km-LVL" firstAttribute="centerY" secondItem="VB0-1I-pDI" secondAttribute="centerY" id="Raf-uL-n6C"/>
                             <constraint firstItem="9fd-km-LVL" firstAttribute="leading" secondItem="dJv-uG-LWU" secondAttribute="leading" id="ZtJ-c3-oHj"/>
                             <constraint firstItem="9fd-km-LVL" firstAttribute="trailing" secondItem="dJv-uG-LWU" secondAttribute="trailing" id="s3N-ca-5sf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZCO-Kh-n16"/>
+                    <connections>
+                        <outlet property="imageView" destination="9fd-km-LVL" id="gDa-Kf-iOy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBb-So-sZi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,7 +253,6 @@
     </scenes>
     <resources>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="photo" width="640" height="640"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

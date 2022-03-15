@@ -24,6 +24,8 @@ struct Person {
      let education: String
      let languages: String
      let info: String
+ 
+     let image: String
             
      var desciption: String {
 """
@@ -38,7 +40,7 @@ Info: \(info)
      }
             
      var fullName: String {
-         name + " " + surname
+         "\(name) \(surname)"
      }
     
     static func getPerson() -> Person {
@@ -48,6 +50,7 @@ Info: \(info)
                city: "Krasnodar",
                education: "Economics",
                languages: "Russian, English, Arabic",
-               info: "My name is Paul and I want to become iOS developer to have the possibility to work abroad.")
+               info: "My name is Paul and I want to become iOS developer to have the possibility to work abroad.",
+               image: "photo")
     }
 }

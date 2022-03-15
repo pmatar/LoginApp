@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
-    let user = User.setUser()
+    private let user = User.setUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,19 +22,16 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let tabBarController = segue.destination as? UITabBarController {
+        guard let tabBarController = segue.destination as? UITabBarController else { return }
+        guard let viewControllers = tabBarController.viewControllers else { return }
+        
+        for viewController in viewControllers {
             
-            guard let viewControllers = tabBarController.viewControllers else { return }
-            
-            for viewController in viewControllers {
-                
-                if let welcomeVC = viewController as? WelcomeViewController {
-                    welcomeVC.user = user.person
-                } else if let navigationVC = viewController as? UINavigationController {
-                    guard let bioVC = navigationVC.topViewController as? BioViewController else { return }
-                    bioVC.user = user.person
-                    bioVC.title = user.person.fullName
-                }
+            if let welcomeVC = viewController as? WelcomeViewController {
+                welcomeVC.user = user
+            } else if let navigationVC = viewController as? UINavigationController {
+                guard let bioVC = navigationVC.topViewController as? BioViewController else { return }
+                bioVC.user = user
             }
         }
     }

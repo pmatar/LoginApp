@@ -11,11 +11,16 @@ class BioViewController: UIViewController {
 
     @IBOutlet var bioTextView: UITextView!
 
-    var user: Person?
+    var user: User!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let imageVC = segue.destination as? ImageViewController else { return }
+        imageVC.user = user
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bioTextView.text = user?.desciption ?? ""
-//        self.title = user?.fullName ?? ""
+        bioTextView.text = user.person.desciption
+        title = user.person.fullName
     }
 }
